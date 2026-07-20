@@ -100,7 +100,7 @@ async function sendUserMessage(e) {
 
         .select("id")
 
-        .eq(
+        .ilike(
             "role",
             "admin"
         )
@@ -350,68 +350,26 @@ async function loadMessages() {
 
 
     const {
-
+        data: {
+            user
+        }
+    } = await supabaseClient.auth.getUser();
+    
+    const {
         data,
-
         error
-
     } = await supabaseClient
-
-        .from(
-
-            "messages"
-
+        .from("messages")
+        .select("*")
+        .or(
+            `sender_id.eq.${user.id},recipient_id.eq.${user.id}`
         )
-
-        .select(
-
-            "*"
-
-        )
-
         .order(
-
             "created_at",
-
             {
-
-                ascending:
-
-                    true
-
+                ascending: true
             }
-
         );
-
-
-    if (
-
-        error
-
-    ) {
-
-
-        console.error(
-
-            "Load Messages Error:",
-
-            error
-
-        );
-
-
-        return;
-
-    }
-
-
-    displayMessages(
-
-        data
-
-    );
-
-}
 
 
 // ==========================================
