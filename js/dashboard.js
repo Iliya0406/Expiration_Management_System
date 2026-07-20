@@ -9,6 +9,30 @@ console.log(
 
 async function loadAdminStatistics() {
 
+    const totalUsers =
+    document.getElementById("totalUsers");
+
+    const totalItems =
+        document.getElementById("totalItems");
+    
+    const expiredItems =
+        document.getElementById("expiredItems");
+    
+    const totalMessages =
+        document.getElementById("totalMessages");
+    
+    
+    if (
+        !totalUsers ||
+        !totalItems ||
+        !expiredItems ||
+        !totalMessages
+    ) {
+    
+        return;
+    
+    }
+
     console.log("loadAdminStatistics() started");
 
 
@@ -51,10 +75,7 @@ async function loadAdminStatistics() {
     }
 
 
-    document.getElementById(
-        "totalUsers"
-    ).textContent =
-
+    totalUsers.textContent =
         userCount || 0;
 
 
@@ -91,10 +112,7 @@ async function loadAdminStatistics() {
     }
 
 
-    document.getElementById(
-        "totalItems"
-    ).textContent =
-
+    totalItems.textContent =
         itemCount || 0;
 
 
@@ -145,10 +163,7 @@ async function loadAdminStatistics() {
     }
 
 
-    document.getElementById(
-        "expiredItems"
-    ).textContent =
-
+    expiredItems.textContent =
         expiredCount || 0;
 
 
@@ -186,10 +201,7 @@ async function loadAdminStatistics() {
     }
 
 
-    document.getElementById(
-        "totalMessages"
-    ).textContent =
-
+   totalMessages.textContent =
         messageCount || 0;
 
 
